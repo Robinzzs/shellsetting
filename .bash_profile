@@ -33,6 +33,8 @@ export EDITOR=vi
 #export LSCOLORS='Exfxcxdxbxegedabagacad' #指定颜色
 
 
-#cask ???
+#cask Emacs-application
 export PATH="$HOME/.cask/bin:$PATH"
+
+#Macport
 export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS/bin:$PATH
