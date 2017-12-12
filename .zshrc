@@ -7,7 +7,14 @@ export ZSH=/Users/zzs/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="myrobbyrussell"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +58,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git svn)
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,12 +98,17 @@ alias ll='gls -l --color=auto'
 #alias la='gls -al --color=auto'
 alias cl='clear'
 alias grep='grep --color=auto'
-#emacs 
-alias ez='emacs .zshrc &'
-alias eb='emacs .bash_profile &'
-alias ezh='emacs .zsh_history &'
-alias ebh='emacs .bash_history &'
+alias rf='rm -rf'
 
+#edit shell 
+alias ez='emacs ~/.zshrc &'
+alias eb='emacs ~/.bash_profile &'
+alias ezh='emacs ~/.zsh_history &'
+alias ebh='emacs ~/.bash_history &'
+alias sz='source ~/.zshrc'
+alias sb='source ~/.bash_profile'
+
+#emacs
 alias es='emacs SConstruct &'
 alias em='emacs'
 #scons 
@@ -106,8 +120,7 @@ alias p='pscons'
 alias pc='pscons -c'
 alias pv='pscons view'
 #sfXXXX
-alias pen='sfpen'
-
+alias pen='xtpen'
 
 #alias -s SConstruct=emacs  ???
 
