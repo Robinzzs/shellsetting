@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/zzs/.oh-my-zsh
+export ZSH=/Users/robinzzs/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -59,7 +59,8 @@ ZSH_THEME="myrobbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+    git
+    autojump
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,15 +93,39 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi='vim'
-alias ls='gls --color=auto'
-alias ll='gls -l --color=auto'
-#alias la='gls -al --color=auto'
-alias cl='clear'
-alias grep='grep --color=auto'
-alias rf='rm -rf'
 
-#edit shell 
+############self-define function
+##########################################################################
+##?????
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+##SOURCES
+
+##PATHS
+# added by Anaconda2 installer
+export PATH="/Users/robinzzs/anaconda2/bin:$PATH"
+
+##alias   function
+alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
+alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
+alias git="/usr/local/Cellar/git/2.17.0/bin/git"
+
+#command line
+alias cls='clear'
+alias l='ls -l'
+alias la='ls -al'
+alias vi='vim'
+alias grep="grep --color=auto"
+alias rf="rm -rvf"
+alias rmrsf="sfrm *.rsf"
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+
+##edit shell
 alias ez='emacs ~/.zshrc &'
 alias eb='emacs ~/.bash_profile &'
 alias ezh='emacs ~/.zsh_history &'
@@ -111,7 +136,13 @@ alias sb='source ~/.bash_profile'
 #emacs
 alias es='emacs SConstruct &'
 alias em='emacs'
-#scons 
+
+#madagascar
+source ~/madagascar/share/madagascar/etc/env.sh
+export DATAPATH=~/DATAFILE/
+export EDITOR=vi
+
+#scons
 alias s='scons'
 alias sc='scons -c'
 alias sv='scons view'
@@ -119,23 +150,83 @@ alias sv='scons view'
 alias p='pscons'
 alias pc='pscons -c'
 alias pv='pscons view'
+
 #sfXXXX
 alias pen='xtpen'
 
-#alias -s SConstruct=emacs  ???
+#####################################################################
 
+#启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
+setopt AUTO_PUSHD
+#相同的历史路径只保留一个
+setopt PUSHD_IGNORE_DUPS
 
-source ~/.bash_profile
+#自动补全功能 {{{
+setopt AUTO_LIST
+setopt AUTO_MENU
+#开启此选项，补全时会直接选中菜单项
+#setopt MENU_COMPLETE
 
-#autojump
-export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
-if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
-    . /opt/local/etc/profile.d/autojump.sh
-fi
-
-#autoload
-autoload -Uz compinit
+autoload -U compinit
 compinit
-zstyle :compinstall filename '/home/capecchi/.zshrc'
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+
+#自动补全缓存
+#zstyle ':completion::complete:*' use-cache on
+#zstyle ':completion::complete:*' cache-path .zcache
+#zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
+#自动补全选项
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' menu select
+zstyle ':completion:*:*:default' force-list always
+zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
+
+zstyle ':completion:*:match:*' original only
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:predict:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
+
+#路径补全
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-shlashes 'yes'
+zstyle ':completion::complete:*' '\\'
+
+#彩色补全菜单
+#eval $(dircolors -b)
+#export ZLSCOLORS="${LS_COLORS}"
+#zmodload zsh/complist
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+#修正大小写
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+#错误校正
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+#kill 命令补全
+compdef pkill=kill
+compdef pkill=killall
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:processes' command 'ps -au$USER'
+
+#补全类型提示分组
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+
+zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'
+
+# cd ~ 补全顺序
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+#}}}
+
+
+
