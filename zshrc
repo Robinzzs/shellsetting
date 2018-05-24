@@ -61,6 +61,7 @@ ZSH_THEME="myrobbyrussell"
 plugins=(
     git
     autojump
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,7 +114,6 @@ alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
 
 alias git="/usr/local/Cellar/git/2.17.0/bin/git"
 
-
 #command line
 alias cls='clear'
 alias l='ls -l'
@@ -121,7 +121,8 @@ alias la='ls -al'
 alias vi='vim'
 alias grep="grep --color=auto"
 alias rf="rm -rvf"
-alias rmrsf="sfrm *.rsf"
+alias rmrsf="sfrm -v *.rsf"
+alias rmvpl="rm -v *.vpl"
 alias tf="tar -xzvf"
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
@@ -148,6 +149,7 @@ alias gph="git push"
 alias sa="svn add"
 alias sst="svn status"
 alias sci="svn commit"
+alias sup="svn update"
 
 #emacs
 alias es='emacs SConstruct &'
@@ -157,7 +159,7 @@ alias ei='emacs ~/.spacemacs.d/init.el &'
 #madagascar
 source ~/madagascar/share/madagascar/etc/env.sh
 export DATAPATH=~/DATAFILE/
-export EDITOR=vi
+#export EDITOR=vi
 
 #scons
 alias s='scons'
@@ -172,7 +174,6 @@ alias pv='pscons view'
 alias pen='xtpen'
 
 #####################################################################
-
 #启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
 setopt AUTO_PUSHD
 #相同的历史路径只保留一个
