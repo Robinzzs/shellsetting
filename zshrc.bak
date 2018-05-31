@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/robinzzs/.oh-my-zsh
+  export ZSH=/home/zzs/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -59,8 +59,8 @@ ZSH_THEME="myrobbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    autojump
+    git svn
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -94,23 +94,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-############self-define function
-##########################################################################
-##?????
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source  ~/.bash_profile
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-##SOURCES
-
-##PATHS
+# PATH
 # added by Anaconda2 installer
-export PATH="/Users/robinzzs/anaconda2/bin:$PATH"
-
-##alias   function
-alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
-alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
-alias git="/usr/local/Cellar/git/2.17.0/bin/git"
+export PATH="/home/zzs/anaconda2/bin:$PATH"
+# linuxbrew
+PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 
 #command line
 alias cls='clear'
@@ -119,28 +111,46 @@ alias la='ls -al'
 alias vi='vim'
 alias grep="grep --color=auto"
 alias rf="rm -rvf"
-alias rmrsf="sfrm *.rsf"
+alias rmrsf="sfrm -v *.rsf"
+alias tf="tar -xzvf"
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-##edit shell
-alias ez='emacs ~/.zshrc &'
-alias eb='emacs ~/.bash_profile &'
-alias ezh='emacs ~/.zsh_history &'
-alias ebh='emacs ~/.bash_history &'
+
+#edit shell
+emacsopenfile()
+{
+    emacs $@ &;
+    return 0;
+}
+alias ez='emacsopenfile ~/.zshrc'
+alias eb='emacsopenfile ~/.bash_profile'
+alias ezh='emacsopenfile ~/.zsh_history'
+alias ebh='emacsopenfile ~/.bash_history'
 alias sz='source ~/.zshrc'
 alias sb='source ~/.bash_profile'
 
-#emacs
-alias es='emacs SConstruct &'
-alias em='emacs'
+#git
+alias gst="git status "
+alias gco="git checkout "
+alias gci="git commit "
+alias ga="git add"
+alias gpl="git pull"
+alias gph="git push"
 
-#madagascar
-source ~/madagascar/share/madagascar/etc/env.sh
-export DATAPATH=~/DATAFILE/
-export EDITOR=vi
+#svn
+alias sa="svn add"
+alias sst="svn status"
+alias sci="svn commit"
+alias sup="svn update"
+
+#emacs
+alias es='emacsopenfile SConstruct'
+alias em='emacsopenfile'
+alias ei='emacsopenfile ~/.spacemacs.d/init.el '
+
 
 #scons
 alias s='scons'
@@ -151,8 +161,14 @@ alias p='pscons'
 alias pc='pscons -c'
 alias pv='pscons view'
 
+#tree
+alias tl='tree -dL'
+
 #sfXXXX
-alias pen='xtpen'
+alias pen="sfpen"
+
+#export SVN_EDITOR=emacs
+
 
 #####################################################################
 
@@ -227,6 +243,4 @@ zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m
 # cd ~ 补全顺序
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
-
-
 
