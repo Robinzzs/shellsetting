@@ -8,6 +8,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="myrobbyrussell"
+# ZSH_THEME="myastro"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -105,70 +106,65 @@ export MANPATH="$(brew --prefix)/share/man:$MANPATH"
 export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 
 #command line
-alias cls='clear'
-alias l='ls -l'
-alias la='ls -al'
-alias vi='vim'
-alias grep="grep --color=auto"
-alias rf="rm -rvf"
-alias rmrsf="sfrm -v *.rsf"
-alias tf="tar -xzvf"
-alias -s gz='tar -xzvf'
-alias -s tgz='tar -xzvf'
-alias -s zip='unzip'
-alias -s bz2='tar -xjvf'
-
+alias cls=" clear "
+alias l=" ls -l "
+alias la=" ls -al "
+alias vi=" vim "
+alias grep=" grep --color=auto "
+alias rf=" rm -rvf "
+alias rmrsf=" sfrm -v *.rsf "
+alias tf=" tar -xzvf "
+alias -s gz=" tar -xzvf "
+alias -s tgz=" tar -xzvf "
+alias -s zip=" unzip "
+alias -s bz2=" tar -xjvf "
 
 #edit shell
-emacsopenfile()
-{
-    emacs $@ &;
-    return 0;
-}
-alias ez='emacsopenfile ~/.zshrc'
-alias eb='emacsopenfile ~/.bash_profile'
-alias ezh='emacsopenfile ~/.zsh_history'
-alias ebh='emacsopenfile ~/.bash_history'
-alias sz='source ~/.zshrc'
-alias sb='source ~/.bash_profile'
+emacsopenfile(){ emacs $@ &;  return 0; }
+alias ez=" emacsopenfile ~/.zshrc "
+alias eb=" emacsopenfile ~/.bash_profile "
+alias ezh=" emacsopenfile ~/.zsh_history "
+alias ebh=" emacsopenfile ~/.bash_history "
+alias sz=" source ~/.zshrc "
+alias sb=" source ~/.bash_profile "
 
 #git
-alias gst="git status "
-alias gco="git checkout "
-alias gci="git commit "
-alias ga="git add"
-alias gpl="git pull"
-alias gph="git push"
+alias gst=" git status "
+alias gco=" git checkout "
+alias gci=" git commit "
+alias ga=" git add "
+alias gpl=" git pull "
+alias gph=" git push "
 
 #svn
-alias sa="svn add"
-alias sst="svn status"
-alias sci="svn commit"
-alias sup="svn update"
+alias sa=" svn add "
+alias sst=" svn status "
+alias sci=" svn commit "
+alias sup=" svn update "
 
 #emacs
-alias es='emacsopenfile SConstruct'
-alias em='emacsopenfile'
-alias ei='emacsopenfile ~/.spacemacs.d/init.el '
+alias es=" emacsopenfile SConstruct "
+alias ec=" emacsopenfile *.c "
+alias em=" emacsopenfile "
+alias ei=" emacsopenfile ~/.spacemacs.d/init.el "
 
 
 #scons
-alias s='scons'
-alias sc='scons -c'
-alias sv='scons view'
+alias s=" scons "
+alias sc=" scons -c "
+alias sv=" scons view "
 
-alias p='pscons'
-alias pc='pscons -c'
-alias pv='pscons view'
+alias p=" pscons "
+alias pc=" pscons -c "
+alias pv=" pscons view "
 
 #tree
-alias tl='tree -dL'
+alias tl=" tree -dL "
 
 #sfXXXX
-alias pen="sfpen"
+alias pen=" sfpen "
 
 #export SVN_EDITOR=emacs
-
 
 #####################################################################
 
