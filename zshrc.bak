@@ -7,9 +7,9 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="myrobbyrussell"
+# ZSH_THEME="myrobbyrussell"
 # ZSH_THEME="myastro"
-
+ZSH_THEME="zeta"
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -51,6 +51,7 @@ ZSH_THEME="myrobbyrussell"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -60,8 +61,8 @@ ZSH_THEME="myrobbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git svn
-    zsh-autosuggestions
+    git svn extract
+    zsh-autosuggestions zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -150,9 +151,9 @@ alias ei=" emacsopenfile ~/.spacemacs.d/init.el "
 
 
 #scons
-alias s=" scons "
-alias sc=" scons -c "
-alias sv=" scons view "
+alias s="scons "
+alias sc="scons -c "
+alias sv="scons view "
 
 alias p=" pscons "
 alias pc=" pscons -c "
@@ -239,4 +240,5 @@ zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m
 # cd ~ 补全顺序
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
+
 
