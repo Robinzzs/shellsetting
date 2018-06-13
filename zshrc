@@ -7,7 +7,8 @@ export ZSH=/Users/robinzzs/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="myrobbyrussell"
+# ZSH_THEME="myrobbyrussell"
+ZSH_THEME="zeta"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -50,6 +51,7 @@ ZSH_THEME="myrobbyrussell"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -59,9 +61,8 @@ ZSH_THEME="myrobbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    autojump
-    zsh-autosuggestions
+    git autojump svn extract sudo
+    zsh-autosuggestions zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,13 +97,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ############self-define function
-##########################################################################
-##?????
+##autojump
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 ##SOURCES
+#madagascar
+source ~/madagascar/share/madagascar/etc/env.sh
+export DATAPATH=~/DATAFILE/
 
 ##PATHS
 # added by Anaconda2 installer
@@ -129,11 +132,12 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-##edit shell
-alias ez='emacs ~/.zshrc &'
-alias eb='emacs ~/.bash_profile &'
-alias ezh='emacs ~/.zsh_history &'
-alias ebh='emacs ~/.bash_history &'
+#edit shell
+emacsopenfile() { emacs $@ &; return 0; }
+alias ez='emacsopenfile ~/.zshrc'
+alias eb='emacsopenfile ~/.bash_profile'
+alias ezh='emacsopenfile ~/.zsh_history'
+alias ebh='emacsopenfile ~/.bash_history'
 alias sz='source ~/.zshrc'
 alias sb='source ~/.bash_profile'
 
@@ -152,14 +156,9 @@ alias sci="svn commit"
 alias sup="svn update"
 
 #emacs
-alias es='emacs SConstruct &'
-alias em='emacs'
-alias ei='emacs ~/.spacemacs.d/init.el &'
-
-#madagascar
-source ~/madagascar/share/madagascar/etc/env.sh
-export DATAPATH=~/DATAFILE/
-#export EDITOR=vi
+alias es='emacsopenfile SConstruct'
+alias em='emacsopenfile'
+alias ei='emacsopenfile ~/.spacemacs.d/init.el '
 
 #scons
 alias s='scons'
@@ -171,7 +170,7 @@ alias pc='pscons -c'
 alias pv='pscons view'
 
 #sfXXXX
-alias pen='xtpen'
+# alias pen='xtpen'
 
 #####################################################################
 #启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
