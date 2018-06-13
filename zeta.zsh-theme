@@ -57,7 +57,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue%}HEAD %{$blue_bold%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 # ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} ✔ "
 # ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} Y "
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} O "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} X "
 
 # Git status.
