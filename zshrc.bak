@@ -9,7 +9,9 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="myrobbyrussell"
 # ZSH_THEME="myastro"
-ZSH_THEME="zeta"
+# ZSH_THEME="zeta"
+ZSH_THEME="lambda-mod"
+
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -61,7 +63,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git svn extract
+    git svn extract sudo
     zsh-autosuggestions zsh-syntax-highlighting
 )
 
