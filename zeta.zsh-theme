@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Zeta theme for oh-my-zsh
 # Tested on Linux, Unix and Windows under ANSI colors.
 # Copyright: Skyler Lee, 2015
@@ -23,7 +24,8 @@ local white_bold=$fg_bold[white]
 
 local highlight_bg=$bg[red]
 
-local zeta='ζ'
+local zeta='→'
+# local zeta='ζ'
 
 # Machine name.
 function get_box_name {
@@ -49,7 +51,9 @@ function get_current_dir {
 }
 
 # Git info.
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue_bold%}"
+# ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue_bold%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="at %{$blue_bold%} "
+
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} ✔ "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
@@ -57,13 +61,15 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
 # Git status.
 ZSH_THEME_GIT_PROMPT_ADDED="%{$green_bold%}+"
 ZSH_THEME_GIT_PROMPT_DELETED="%{$red_bold%}-"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$magenta_bold%}*"
+# ZSH_THEME_GIT_PROMPT_MODIFIED="%{$magenta_bold%}*"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$magenta_bold%}!"
 ZSH_THEME_GIT_PROMPT_RENAMED="%{$blue_bold%}>"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$cyan_bold%}="
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$yellow_bold%}?"
 
 # Git sha.
-ZSH_THEME_GIT_PROMPT_SHA_BEFORE="[%{$yellow%}"
+# ZSH_THEME_GIT_PROMPT_SHA_BEFORE="[%{$yellow%}"
+ZSH_THEME_GIT_PROMPT_SHA_BEFORE="[%{$blue_bold%}"
 ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$reset_color%}]"
 
 function get_git_prompt {
@@ -72,7 +78,8 @@ function get_git_prompt {
         if [[ -n $git_status ]]; then
             git_status="[$git_status%{$reset_color%}]"
         fi
-        local git_prompt=" <$(git_prompt_info)$git_status>"
+        # local git_prompt=" <$(git_prompt_info)$git_status>"
+        local git_prompt=" $(git_prompt_info)$git_status  "
         echo $git_prompt
     fi
 }
@@ -102,9 +109,10 @@ function print_prompt_head {
 %{$green_bold%}$(get_usr_name)\
 %{$blue%}@\
 %{$cyan_bold%}$(get_box_name): \
-%{$yellow_bold%}$(get_current_dir)%{$reset_color%}\
+%{$magenta_bold%}$(get_current_dir)%{$reset_color%}\
 $(get_git_prompt) "
-    local right_prompt="%{$blue%}($(get_time_stamp))%{$reset_color%} "
+    # local right_prompt="%{$blue%}($(get_time_stamp))%{$reset_color%} "
+    local right_prompt="%{$blue%}$(get_time_stamp)%{$reset_color%} "
     print -rP "$left_prompt$(get_space $left_prompt $right_prompt)$right_prompt"
 }
 
