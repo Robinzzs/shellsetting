@@ -24,7 +24,7 @@ local white_bold=$fg_bold[white]
 
 local highlight_bg=$bg[red]
 
-local zeta='→'
+local zeta='->'
 # local zeta='ζ'
 
 # Machine name.
@@ -52,11 +52,13 @@ function get_current_dir {
 
 # Git info.
 # ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue_bold%}"
-ZSH_THEME_GIT_PROMPT_PREFIX="at %{$blue_bold%} "
-
+# ZSH_THEME_GIT_PROMPT_PREFIX="at %{$blue_bold%} "
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue%}HEAD %{$blue_bold%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} ✔ "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} ✔ "
+# ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} Y "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} X "
 
 # Git status.
 ZSH_THEME_GIT_PROMPT_ADDED="%{$green_bold%}+"
