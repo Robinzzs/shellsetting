@@ -22,10 +22,10 @@ ZSH_THEME="zeta"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -51,7 +51,8 @@ ZSH_THEME="zeta"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
-HIST_STAMPS="yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd" # 时间戳 "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+export HISTCONTROL=ignoredups  # 不记录重复的命令
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -61,9 +62,19 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git autojump svn extract sudo
+    git autojump svn extract sudo colored-man-pages
     zsh-autosuggestions zsh-syntax-highlighting
 )
+# git                       最常用插件，git 相关
+# svn                       svn 命令缩写
+# sudo                      双击 ESC 加入 sudo 字符
+# autojump                  目录跳转
+# z                         按照使用频率排序曾经进过的目录，进行模糊匹配
+# wd                        通过设置 tag，快速切换目录
+# extract                   'x'命令，支持自动识别压缩格式并将其解压
+# colored-man-pages         'man'帮助文档页面开启高亮显示
+# zsh-autosuggestios        命令行补全辅助
+# zsh-syntax-highlighting   oh-my-zsh 命令行语法高亮插件
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,7 +115,7 @@ source $ZSH/oh-my-zsh.sh
 
 ##SOURCES
 #madagascar
-source ~/madagascar/share/madagascar/etc/env.sh
+source /Users/robinzzs/madagascar/share/madagascar/etc/env.sh
 export DATAPATH=~/DATAFILE/
 
 ##PATHS
@@ -112,8 +123,10 @@ export DATAPATH=~/DATAFILE/
 export PATH="/Users/robinzzs/anaconda2/bin:$PATH"
 
 ##alias   function
-alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
-alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
+# alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
+# alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
+alias emacs="/usr/local/opt/emacs-plus/bin/emacs"
+alias emacsclient="/usr/local/opt/emacs-plus/bin/emacsclient"
 
 alias git="/usr/local/Cellar/git/2.17.0/bin/git"
 
