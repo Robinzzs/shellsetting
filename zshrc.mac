@@ -107,8 +107,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-############self-define function
-##autojump
+############SELF-DEFINE FUNCTION
+#autojump
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -122,37 +122,41 @@ export DATAPATH=~/DATAFILE/
 # added by Anaconda2 installer
 export PATH="/Users/robinzzs/anaconda2/bin:$PATH"
 
-##alias   function
+##ALIAS
 # alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
 # alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
 alias emacs="/usr/local/opt/emacs-plus/bin/emacs"
 alias emacsclient="/usr/local/opt/emacs-plus/bin/emacsclient"
 
-alias git="/usr/local/Cellar/git/2.17.0/bin/git"
+alias git="/usr/local/Cellar/git/2.18.0/bin/git"
 
 #command line
-alias cls='clear'
-alias l='ls -l'
-alias la='ls -al'
-alias vi='vim'
+alias cls="clear"
+alias l="ls -l"
+alias la="ls -al"
+alias vi="vim"
 alias grep="grep --color=auto"
+alias tf="tar -xzvf"
+alias -s gz="tar -xzvf"
+alias -s tgz="tar -xzvf"
+alias -s zip="unzip"
+alias -s bz2="tar -xjvf"
+#save delete : move file to RecyclingStation entails save delete
+deletefile() { mv -vf $@ ~/RecyclingStation ; return 0;}
+alias del="deletefile"
+#force delete
 alias rf="rm -rvf"
 alias rmrsf="sfrm -v *.rsf"
 alias rmvpl="rm -v *.vpl"
-alias tf="tar -xzvf"
-alias -s gz='tar -xzvf'
-alias -s tgz='tar -xzvf'
-alias -s zip='unzip'
-alias -s bz2='tar -xjvf'
 
 #edit shell
 emacsopenfile() { emacs $@ &; return 0; }
-alias ez='emacsopenfile ~/.zshrc'
-alias eb='emacsopenfile ~/.bash_profile'
-alias ezh='emacsopenfile ~/.zsh_history'
-alias ebh='emacsopenfile ~/.bash_history'
-alias sz='source ~/.zshrc'
-alias sb='source ~/.bash_profile'
+alias ez="emacsopenfile ~/.zshrc"
+alias eb="emacsopenfile ~/.bash_profile"
+alias ezh="emacsopenfile ~/.zsh_history"
+alias ebh="emacsopenfile ~/.bash_history"
+alias sz="source ~/.zshrc"
+alias sb="source ~/.bash_profile"
 
 #git
 alias gst="git status "
@@ -169,21 +173,21 @@ alias sci="svn commit"
 alias sup="svn update"
 
 #emacs
-alias es='emacsopenfile SConstruct'
-alias em='emacsopenfile'
-alias ei='emacsopenfile ~/.spacemacs.d/init.el '
+alias es="emacsopenfile SConstruct"
+alias em="emacsopenfile"
+alias ei="emacsopenfile ~/.spacemacs.d/init.el"
 
 #scons
-alias s='scons'
-alias sc='scons -c'
-alias sv='scons view'
+alias s="scons"
+alias sc="scons -c"
+alias sv="scons view"
 
-alias p='pscons'
-alias pc='pscons -c'
-alias pv='pscons view'
+alias p="pscons"
+alias pc="pscons -c"
+alias pv="pscons view"
 
 #sfXXXX
-# alias pen='xtpen'
+# alias pen="xtpen"
 
 #####################################################################
 #启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
