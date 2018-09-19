@@ -109,7 +109,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#SOURCE
+#########################SOURCE#########################
 # bash
 #source  ~/.bash_profile
 
@@ -117,7 +117,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 source /home/zzs/madagascar/share/madagascar/etc/env.sh
 export DATAPATH=/mnt/sdb/DATAFILE/
 
-#PATHS
+#########################PATHS#########################
 # added by Anaconda2 installer
 export PATH=/home/zzs/anaconda2/bin:$PATH
 
@@ -126,26 +126,26 @@ export PATH=/home/zzs/anaconda2/bin:$PATH
 # export MANPATH="$(brew --prefix)/share/man:$MANPATH"
 # export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"
 
-#ALIAS
-#git
+#########################ALIAS#########################
+# git
 #alias git="/home/zzs/Downloads/git_buid/bin/git"
 
-#command line
+# command line
 alias cls=" clear "
 alias l="ls -l"
 alias la=" ls -al "
 alias vi=" vim "
 alias grep=" grep --color=auto "
 
-#save delete : move file to RecyclingStation entails save delete
+# save delete : move file to RecyclingStation entails save delete
 deletefile() { mv -vf $@ ~/RecyclingStation ; return 0;}
 alias del="deletefile"
-#force delete
+# force delete
 alias rf="rm -rvf"
 alias rmrsf="sfrm -v *.rsf"
 alias rmvpl="rm -v *.vpl"
 
-#edit shell
+# edit shell
 emacsopenfile(){ emacs $@ &;  return 0; }
 alias ez=" emacsopenfile ~/.zshrc "
 alias eb=" emacsopenfile ~/.bash_profile "
@@ -154,7 +154,7 @@ alias ebh=" emacsopenfile ~/.bash_history "
 alias sz=" source ~/.zshrc "
 alias sb=" source ~/.bash_profile "
 
-#git
+# git
 alias gst=" git status "
 alias gco=" git checkout "
 alias gci=" git commit "
@@ -162,20 +162,19 @@ alias ga=" git add "
 alias gpl=" git pull "
 alias gph=" git push "
 
-#svn
+# svn
 alias sa=" svn add "
 alias sst=" svn status "
 alias sci=" svn commit "
 alias sup=" svn update "
 
-#emacs
+# emacs
 alias es=" emacsopenfile SConstruct "
 alias ec=" emacsopenfile *.c "
 alias em=" emacsopenfile "
 alias ei=" emacsopenfile ~/.spacemacs.d/init.el "
 
-
-#scons
+# scons
 alias s="scons "
 alias sc="scons -c "
 alias sv="scons view "
@@ -184,13 +183,17 @@ alias p=" pscons "
 alias pc=" pscons -c "
 alias pv=" pscons view "
 
-#tree
+# tree
 alias tl=" tree -dL "
 
-#sfXXXX
+# sfXXXX
 alias pen=" sfpen "
 
 #export SVN_EDITOR=emacs
+
+# change Ctrl and Caps Lock
+changemysettingkey() { xmodmap ~/.keymaprc; return 0;}
+alias swkey="changemysettingkey "
 
 #####################################################################
 #启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
@@ -264,5 +267,3 @@ zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m
 # cd ~ 补全顺序
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
-
-
