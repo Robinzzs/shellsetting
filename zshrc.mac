@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -116,21 +114,45 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 ##SOURCES
+#LLVM OpenMP
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+##Homebrew
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
 #madagascar
 source /Users/robinzzs/madagascar/share/madagascar/etc/env.sh
 export DATAPATH=~/DATAFILE/
+# export PYTHONPATH="/Users/robinzzs/madagascar/lib/python3.7/site-packages/rsf"
 
 ##PATHS
 # added by Anaconda2 installer
-export PATH="/Users/robinzzs/anaconda2/bin:$PATH"
+# export PATH="/Users/robinzzs/anaconda2/bin:$PATH"
+# miniconda3
+export PATH="/Users/robinzzs/miniconda3/bin:$PATH"
+
+# doom emacs
+export PATH="/Users/robinzzs/.emacs.d/bin:$PATH"
+
+# Add Visual Studio Code (code)
+# export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+##pylint
+# export PYTHONPATH=$PYTHONPATH:/Users/robinzzs/madagascar/lib/python3.7/site-packages
+
 
 ##ALIAS
 # alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
 # alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
-alias emacs="/usr/local/opt/emacs-plus/bin/emacs"
-alias emacsclient="/usr/local/opt/emacs-plus/bin/emacsclient"
+# alias emacs="/usr/local/opt/emacs-plus/bin/emacs"
+# alias emacsclient="/usr/local/opt/emacs-plus/bin/emacsclient"
 
-alias git="/usr/local/Cellar/git/2.18.0/bin/git"
+# alias git="/usr/local/Cellar/git/2.23.0_1/bin/git"
 
 #command line
 alias cls="clear"
@@ -138,7 +160,11 @@ alias l="ls -l"
 alias la="ls -al"
 alias vi="vim"
 alias grep="grep --color=auto"
-
+alias tf="tar -xzvf"
+alias -s gz="tar -xzvf"
+alias -s tgz="tar -xzvf"
+alias -s zip="unzip"
+alias -s bz2="tar -xjvf"
 #save delete : move file to RecyclingStation entails save delete
 deletefile() { mv -vf $@ ~/RecyclingStation ; return 0;}
 alias del="deletefile"
@@ -169,6 +195,8 @@ alias sa="svn add"
 alias sst="svn status"
 alias sci="svn commit"
 alias sup="svn update"
+# Warning: Failed to set locale category LC_NUMERIC to en_CN.
+export LC_ALL="en_US.UTF-8"
 
 #emacs
 alias es="emacsopenfile SConstruct"
@@ -184,9 +212,11 @@ alias p="pscons"
 alias pc="pscons -c"
 alias pv="pscons view"
 
+#python
+alias py="python "
+
 #sfXXXX
-alias pen=" sfpen "
-# alias pen="xtpen"
+alias pen="sfpen"
 
 #####################################################################
 #启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
@@ -200,13 +230,13 @@ setopt AUTO_MENU
 #开启此选项，补全时会直接选中菜单项
 #setopt MENU_COMPLETE
 
-autoload -U compinit
-compinit
+autoload -U compinit -d ~/.cache/zsh/.zcompdump-$ZSH_VERSION
+compinit -d ~/.cache/zsh/.zcompdump-$ZSH_VERSION
 
 #自动补全缓存
-#zstyle ':completion::complete:*' use-cache on
-#zstyle ':completion::complete:*' cache-path .zcache
-#zstyle ':completion:*:cd:*' ignore-parents parent pwd
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path .zcache
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 #自动补全选项
 zstyle ':completion:*' verbose yes
@@ -226,11 +256,11 @@ zstyle ':completion:*' squeeze-shlashes 'yes'
 zstyle ':completion::complete:*' '\\'
 
 #彩色补全菜单
-#eval $(dircolors -b)
-#export ZLSCOLORS="${LS_COLORS}"
-#zmodload zsh/complist
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# eval $(dircolors -b)
+# export ZLSCOLORS="${LS_COLORS}"
+# zmodload zsh/complist
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 #修正大小写
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
@@ -260,6 +290,3 @@ zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m
 # cd ~ 补全顺序
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
-
-
-
